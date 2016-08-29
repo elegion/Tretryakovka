@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        zoomingView.imageView.contentMode = .ScaleAspectFit
     }
     
     @IBAction func returnToGallery(segue: UIStoryboardSegue) {

@@ -14,8 +14,8 @@ let kDefaultMaximumZoomScale = 4 as CGFloat
 @IBDesignable
 final class ZoomingView: UIView {
 
-    private(set) var scrollView: UIScrollView!
-    private(set) var imageView: UIImageView!
+    private var scrollView: UIScrollView!
+    private var imageView: UIImageView!
     private var toggleZoomRecognizer: UITapGestureRecognizer!
 
     override init(frame: CGRect) {
@@ -38,6 +38,7 @@ final class ZoomingView: UIView {
         
         imageView = UIImageView(frame: bounds)
         imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        imageViewContentMode = .ScaleAspectFit
         scrollView.addSubview(imageView)
         
         toggleZoomRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleScale))
@@ -96,6 +97,21 @@ extension ZoomingView {
             }
         }
     }
+    
+    var imageViewContentMode: UIViewContentMode {
+        get { return imageView.contentMode }
+        set {
+            switch newValue {
+            case .ScaleToFill,
+                 .Redraw,
+                 .ScaleAspectFit,
+                 .ScaleAspectFill:
+                imageView.contentMode = newValue
+            default:
+                imageView.contentMode = .ScaleAspectFit
+            }
+        }
+    }
 }
 
 //MARK: Private
@@ -125,7 +141,7 @@ extension ZoomingView: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        let imageViewSize = imageView.frame.size
+        let imageViewSize = imageView.currentImageSize()
         let scrollViewSize = scrollView.bounds.size
         
         if scrollView.zoomScale > 1 {
