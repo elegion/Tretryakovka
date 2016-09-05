@@ -18,6 +18,8 @@ final class ZoomingView: UIView {
     private var imageView: UIImageView!
     private var toggleZoomRecognizer: UITapGestureRecognizer!
 
+    //MARK - Initialization
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -47,27 +49,17 @@ final class ZoomingView: UIView {
         minimumZoomScale = kDefaultMinimumZoomScale
         maximumZoomScale = kDefaultMaximumZoomScale
     }
-}
-
-//MARK: Life Cycle
-
-extension ZoomingView {
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        resetScale()
-    }
-}
-
-//MARK: - Public
-
-extension ZoomingView {
+    //MARK: - Public
     
     @IBInspectable var image: UIImage? {
         get { return imageView.image }
-        set { imageView.image = newValue }
+        set {
+            imageView.image = newValue
+            resetScale()
+        }
     }
-
+    
     @IBInspectable var minimumZoomScale: CGFloat {
         get { return scrollView.minimumZoomScale }
         set {
@@ -81,7 +73,7 @@ extension ZoomingView {
             scrollView.maximumZoomScale = min(max(1, newValue), 10)
         }
     }
-
+    
     @IBInspectable var toggleZoomOnDoubleTap: Bool {
         get {
             guard let gestureRecognizers = gestureRecognizers else {
@@ -97,12 +89,16 @@ extension ZoomingView {
             }
         }
     }
-}
 
-//MARK: Private
-
-extension ZoomingView {
+    //MARK: Life Cycle
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        resetScale()
+    }
+
+    //MARK: Private
+
     func toggleScale() {
         let targetScale = scrollView.zoomScale == 1 ? maximumZoomScale : 1
         scrollView.setZoomScale(targetScale, animated: true)
@@ -117,7 +113,7 @@ extension ZoomingView {
     }
 }
 
-//MARK: Scroll View
+//MARK: - Scroll View
 
 extension ZoomingView: UIScrollViewDelegate {
     
