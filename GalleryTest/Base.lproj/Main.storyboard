@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bub-MA-tDB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bub-MA-tDB">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -50,24 +50,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQP-z8-9KJ" customClass="ZoomingView" customModule="GalleryTest" customModuleProvider="target">
-                                <rect key="frame" x="30" y="94" width="540" height="432"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWK-7W-9HT" customClass="GalleryView" customModule="GalleryTest" customModuleProvider="target">
+                                <rect key="frame" x="20" y="84" width="560" height="452"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="pic"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumZoomScale">
-                                        <real key="value" value="0.10000000000000001"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="toggleZoomOnDoubleTap" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xQP-z8-9KJ" secondAttribute="bottom" constant="30" id="AaT-2c-nvV"/>
-                            <constraint firstItem="xQP-z8-9KJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="lcl-E9-f1o"/>
-                            <constraint firstAttribute="trailing" secondItem="xQP-z8-9KJ" secondAttribute="trailing" constant="30" id="qA2-cv-OBN"/>
-                            <constraint firstItem="xQP-z8-9KJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="yEv-Nh-Om8"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cWK-7W-9HT" secondAttribute="bottom" constant="20" id="25F-al-77g"/>
+                            <constraint firstItem="cWK-7W-9HT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="EHf-8E-bjE"/>
+                            <constraint firstAttribute="trailing" secondItem="cWK-7W-9HT" secondAttribute="trailing" constant="20" id="LyK-Sz-LSv"/>
+                            <constraint firstItem="cWK-7W-9HT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="eqH-sa-EWI"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -87,7 +83,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="zoomingView" destination="xQP-z8-9KJ" id="Krh-4v-xm1"/>
+                        <outlet property="galleryView" destination="cWK-7W-9HT" id="yr0-wZ-QzG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -163,7 +159,4 @@
             <point key="canvasLocation" x="-345" y="325"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="pic" width="273" height="302"/>
-    </resources>
 </document>

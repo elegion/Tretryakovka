@@ -10,12 +10,17 @@ import UIKit
 
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var zoomingView: ZoomingView!
     
+    @IBOutlet weak var galleryView: GalleryView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        galleryView.images = [
+            GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryUIImage(image: UIImage(named: "pic")!)
+        ]
     }
     
     @IBAction func returnToGallery(segue: UIStoryboardSegue) {
