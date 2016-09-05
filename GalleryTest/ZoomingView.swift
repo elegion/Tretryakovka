@@ -38,7 +38,7 @@ final class ZoomingView: UIView {
         
         imageView = UIImageView(frame: bounds)
         imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        imageViewContentMode = .ScaleAspectFit
+        imageView.contentMode = .ScaleAspectFit
         scrollView.addSubview(imageView)
         
         toggleZoomRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleScale))
@@ -97,21 +97,6 @@ extension ZoomingView {
             }
         }
     }
-    
-    var imageViewContentMode: UIViewContentMode {
-        get { return imageView.contentMode }
-        set {
-            switch newValue {
-            case .ScaleToFill,
-                 .Redraw,
-                 .ScaleAspectFit,
-                 .ScaleAspectFill:
-                imageView.contentMode = newValue
-            default:
-                imageView.contentMode = .ScaleAspectFit
-            }
-        }
-    }
 }
 
 //MARK: Private
@@ -141,18 +126,13 @@ extension ZoomingView: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        let imageViewSize = imageView.currentImageSize()
+        let imageSize = imageView.currentImageSize()
         let scrollViewSize = scrollView.bounds.size
         
-        if scrollView.zoomScale > 1 {
-            let scrollViewContentSize = CGSizeMake(max(imageViewSize.width, scrollViewSize.width),
-                                                   max(imageViewSize.height, scrollViewSize.height))
-            scrollView.contentSize = scrollViewContentSize
-            imageView.center = CGPointMake(scrollViewContentSize.width/2,
-                                           scrollViewContentSize.height/2)
-        } else {
-            scrollView.contentSize = scrollViewSize
-            imageView.center = CGPointMake(scrollView.bounds.width / 2, scrollView.bounds.height/2)
-        }
+        let scrollViewContentSize = CGSizeMake(max(imageSize.width, scrollViewSize.width),
+                                               max(imageSize.height, scrollViewSize.height))
+        scrollView.contentSize = scrollViewContentSize
+        imageView.center = CGPointMake(scrollViewContentSize.width / 2,
+                                       scrollViewContentSize.height / 2)
     }
 }
