@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        automaticallyAdjustsScrollViewInsets = false
+        
         galleryView.images = [
             GalleryUIImage(image: UIImage(named: "pic")!),
             GalleryUIImage(image: UIImage(named: "pic")!),
