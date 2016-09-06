@@ -19,6 +19,8 @@ class ViewController: UIViewController {
         galleryView.images = [
             GalleryUIImage(image: UIImage(named: "pic")!),
             GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryUIImage(image: UIImage(named: "pic")!),
             GalleryUIImage(image: UIImage(named: "pic")!)
         ]
     }
