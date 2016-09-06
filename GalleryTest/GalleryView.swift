@@ -8,7 +8,8 @@
 
 import UIKit
 
-private let GalleryCellIdentifier = "GalleryCell"
+private let kGalleryCellIdentifier = "GalleryCell"
+private let kImageSpacing = 40 as CGFloat
 
 class GalleryView: UIView {
 
@@ -30,15 +31,15 @@ class GalleryView: UIView {
     func setup() {
         collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .Horizontal
-        collectionViewLayout.minimumLineSpacing = 0
+        collectionViewLayout.minimumLineSpacing = kImageSpacing
         collectionViewLayout.minimumInteritemSpacing = 0
         collectionViewLayout.sectionInset = UIEdgeInsetsZero
         
         collectionView = UICollectionView(frame: bounds, collectionViewLayout: collectionViewLayout)
         collectionView.backgroundColor = UIColor.clearColor()
         collectionView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        collectionView.pagingEnabled = true
-        collectionView.registerClass(GalleryCell.self, forCellWithReuseIdentifier: GalleryCellIdentifier)
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.registerClass(GalleryCell.self, forCellWithReuseIdentifier: kGalleryCellIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         addSubview(collectionView)
@@ -62,6 +63,7 @@ class GalleryView: UIView {
         collectionViewLayout.itemSize = self.bounds.size
         collectionView.collectionViewLayout = collectionViewLayout
         collectionView.contentInset = UIEdgeInsetsZero
+        collectionView.contentOffset = CGPointZero
     }
 }
 
@@ -74,11 +76,32 @@ extension GalleryView: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(GalleryCellIdentifier, forIndexPath: indexPath) as! GalleryCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(kGalleryCellIdentifier, forIndexPath: indexPath) as! GalleryCell
         cell.image = images[indexPath.row]
         cell.minimumZoomScale = minimumZoomScale
         cell.maximumZoomScale = maximumZoomScale
         cell.toggleZoomOnDoubleTap = toggleZoomOnDoubleTap
         return cell
+    }
+    
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let targetOffset = targetContentOffset.memory.x
+        guard 0 < targetOffset && targetOffset < scrollView.contentSize.width else { return }
+        
+        let imageWidth = bounds.width + kImageSpacing
+        let currentIndex = floor(scrollView.contentOffset.x / imageWidth)
+        let velocity = velocity.x
+
+        var targetIndex: CGFloat
+        if velocity > 0 {
+            targetIndex = floor(currentIndex + 1)
+        } else if velocity < 0 {
+            targetIndex = floor(currentIndex)
+        } else {
+            targetIndex = floor(targetOffset / imageWidth + 0.5)
+        }
+        
+        targetContentOffset.memory = CGPointMake(imageWidth * targetIndex, 0)
     }
 }
