@@ -9,12 +9,16 @@
 import UIKit
 
 private let kGalleryCellIdentifier = "GalleryCell"
+/// Spacing between images
 private let kImageSpacing = 40 as CGFloat
 
 class GalleryView: UIView {
 
     private var collectionView: UICollectionView!
     private var collectionViewLayout: UICollectionViewFlowLayout!
+    private var imageWidth: CGFloat { return bounds.width + kImageSpacing }
+    /// Keeped for rotation
+    private var currentIndex: Int = 0
     
     //MARK: - Initialization
     
@@ -36,8 +40,8 @@ class GalleryView: UIView {
         collectionViewLayout.sectionInset = UIEdgeInsetsZero
         
         collectionView = UICollectionView(frame: bounds, collectionViewLayout: collectionViewLayout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor.clearColor()
-        collectionView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         collectionView.registerClass(GalleryCell.self, forCellWithReuseIdentifier: kGalleryCellIdentifier)
         collectionView.delegate = self
@@ -57,13 +61,37 @@ class GalleryView: UIView {
     @IBInspectable var maximumZoomScale: CGFloat = kDefaultMaximumZoomScale
     @IBInspectable var toggleZoomOnDoubleTap: Bool = false
     
+    func showImageAtIndex(index: Int, animated: Bool = false) {
+        if collectionView.contentOffset.x != imageWidth * CGFloat(index) {
+            collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0),
+                                                   atScrollPosition: .CenteredHorizontally,
+                                                   animated: animated)
+        }
+    }
+    
     //MARK: - Life Cycle
 
     override func layoutSubviews() {
-        collectionViewLayout.itemSize = self.bounds.size
-        collectionView.collectionViewLayout = collectionViewLayout
-        collectionView.contentInset = UIEdgeInsetsZero
-        collectionView.contentOffset = CGPointZero
+
+        /* 
+         Resize collection and update layout.
+         Collection is resized manually because of bug reporting logs appearing in case of autolayout.
+         */
+        if !CGSizeEqualToSize(collectionView.frame.size, bounds.size) {
+            collectionViewLayout.itemSize = self.bounds.size
+            collectionViewLayout.invalidateLayout()
+            collectionView.frame = bounds
+        }
+        
+        super.layoutSubviews()
+
+        // remove automatically adjusted inset
+        if !UIEdgeInsetsEqualToEdgeInsets(collectionView.contentInset, UIEdgeInsetsZero) {
+            collectionView.contentInset = UIEdgeInsetsZero
+        }
+
+        // scroll to last shown image
+        showImageAtIndex(currentIndex)
     }
 }
 
@@ -89,19 +117,22 @@ extension GalleryView: UICollectionViewDataSource, UICollectionViewDelegate {
         let targetOffset = targetContentOffset.memory.x
         guard 0 < targetOffset && targetOffset < scrollView.contentSize.width else { return }
         
-        let imageWidth = bounds.width + kImageSpacing
-        let currentIndex = floor(scrollView.contentOffset.x / imageWidth)
+        let currentIndex = Int(scrollView.contentOffset.x / imageWidth)
         let velocity = velocity.x
 
-        var targetIndex: CGFloat
+        var targetIndex: Int
         if velocity > 0 {
-            targetIndex = floor(currentIndex + 1)
+            targetIndex = currentIndex + 1
         } else if velocity < 0 {
-            targetIndex = floor(currentIndex)
+            targetIndex = currentIndex
         } else {
-            targetIndex = floor(targetOffset / imageWidth + 0.5)
+            targetIndex = Int(targetOffset / imageWidth + 0.5)
         }
         
-        targetContentOffset.memory = CGPointMake(imageWidth * targetIndex, 0)
+        targetContentOffset.memory = CGPointMake(imageWidth * CGFloat(targetIndex), 0)
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        currentIndex = Int(scrollView.contentOffset.x / imageWidth + 0.5)
     }
 }
