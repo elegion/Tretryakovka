@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -60,11 +61,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cWK-7W-9HT" secondAttribute="bottom" constant="20" id="25F-al-77g"/>
-                            <constraint firstItem="cWK-7W-9HT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="EHf-8E-bjE"/>
-                            <constraint firstAttribute="trailing" secondItem="cWK-7W-9HT" secondAttribute="trailing" constant="20" id="LyK-Sz-LSv"/>
-                            <constraint firstItem="cWK-7W-9HT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="eqH-sa-EWI"/>
+                            <constraint firstItem="cWK-7W-9HT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3t3-BT-CYh"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cWK-7W-9HT" secondAttribute="bottom" constant="20" id="9Sf-y8-XcD"/>
+                            <constraint firstItem="cWK-7W-9HT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="N68-Ot-tOo"/>
+                            <constraint firstItem="cWK-7W-9HT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Tpu-iJ-9hm"/>
+                            <constraint firstItem="cWK-7W-9HT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="V4G-EG-pks"/>
+                            <constraint firstItem="cWK-7W-9HT" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="Y5e-ZU-2oO"/>
+                            <constraint firstAttribute="trailing" secondItem="cWK-7W-9HT" secondAttribute="trailing" constant="20" id="cew-Fd-5YZ"/>
+                            <constraint firstItem="cWK-7W-9HT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="rBc-p9-bYT"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3t3-BT-CYh"/>
+                                <exclude reference="Tpu-iJ-9hm"/>
+                                <exclude reference="V4G-EG-pks"/>
+                                <exclude reference="Y5e-ZU-2oO"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ntL-gm-v8N">
