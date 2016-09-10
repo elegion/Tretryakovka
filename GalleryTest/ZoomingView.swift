@@ -99,9 +99,15 @@ final class ZoomingView: UIView {
 
     //MARK: Private
 
-    func toggleScale() {
-        let targetScale = scrollView.zoomScale == 1 ? maximumZoomScale : 1
-        scrollView.setZoomScale(targetScale, animated: true)
+    func toggleScale(sender: UITapGestureRecognizer) {
+        guard image != nil else { return }
+
+        if scrollView.zoomScale == 1 {
+            scrollView.zoomToRect(targetZoomRectForTapLocation(sender.locationInView(imageView)),
+                                  animated: true)
+        } else {
+            scrollView.setZoomScale(1, animated: true)
+        }
     }
     
     func resetScale() {
@@ -110,6 +116,22 @@ final class ZoomingView: UIView {
         scrollView.contentSize = scrollView.frame.size
         scrollView.contentOffset = CGPointZero
         imageView.frame = scrollView.bounds
+    }
+    
+    func targetZoomRectForTapLocation(tapLocation: CGPoint) -> CGRect {
+        let imageSize = imageView.imageSizeForScale(1)
+        let imageViewSize = imageView.bounds.size
+        
+        let zoomCenter = CGPointMake(tapLocation.x / imageViewSize.width,
+                                     tapLocation.y / imageViewSize.height)
+        
+        let originMiltiplierX = (zoomCenter.x - imageViewSize.width / imageSize.width / maximumZoomScale / 2) * imageSize.width / imageViewSize.width
+        let originMiltiplierY = (zoomCenter.y - imageViewSize.height / imageSize.height / maximumZoomScale / 2) * imageSize.height / imageViewSize.height
+        
+        return CGRectMake(imageViewSize.width * originMiltiplierX,
+                          imageViewSize.height * originMiltiplierY,
+                          imageViewSize.width / maximumZoomScale,
+                          imageViewSize.height / maximumZoomScale)
     }
 }
 
