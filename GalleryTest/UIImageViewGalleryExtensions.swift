@@ -10,8 +10,11 @@ import UIKit
 
 extension UIImageView {
 
-    func currentImageSize() -> CGSize {
+    func imageSizeForScale(scale: CGFloat) -> CGSize {
         guard let image = image else { return CGSizeZero }
+        
+        let currentViewSize = bounds.size
+        let scaledViewSize = CGSizeMake(currentViewSize.width * scale, currentViewSize.height * scale)
         
         switch contentMode {
         case .ScaleToFill,
@@ -19,10 +22,9 @@ extension UIImageView {
             return frame.size
         case .ScaleAspectFit:
             var imageSize = image.size
-            let viewSize = frame.size
             
-            let widthScale = viewSize.width / imageSize.width
-            let heightScale = viewSize.height / imageSize.height
+            let widthScale = scaledViewSize.width / imageSize.width
+            let heightScale = scaledViewSize.height / imageSize.height
             
             let scale = min(widthScale, heightScale)
             imageSize.width *= scale
@@ -31,10 +33,9 @@ extension UIImageView {
             return imageSize
         case .ScaleAspectFill:
             var imageSize = image.size
-            let viewSize = frame.size
             
-            let widthScale = viewSize.width / imageSize.width
-            let heightScale = viewSize.height / imageSize.height
+            let widthScale = scaledViewSize.width / imageSize.width
+            let heightScale = scaledViewSize.height / imageSize.height
             
             let scale = max(widthScale, heightScale)
             imageSize.width *= scale

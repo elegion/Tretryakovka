@@ -122,7 +122,7 @@ extension ZoomingView: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        let imageSize = imageView.currentImageSize()
+        let imageSize = imageView.imageSizeForScale(scrollView.zoomScale)
         let scrollViewSize = scrollView.bounds.size
         
         let scrollViewContentSize = CGSizeMake(max(imageSize.width, scrollViewSize.width),
