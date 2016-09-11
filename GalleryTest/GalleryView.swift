@@ -43,6 +43,8 @@ class GalleryView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor.clearColor()
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.registerClass(GalleryCell.self, forCellWithReuseIdentifier: kGalleryCellIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
