@@ -48,7 +48,7 @@ class GalleryView: UIView {
         collectionViewLayout.minimumInteritemSpacing = 0
         collectionViewLayout.sectionInset = UIEdgeInsetsZero
         
-        collectionView = UICollectionView(frame: bounds, collectionViewLayout: collectionViewLayout)
+        collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: collectionViewLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor.clearColor()
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
@@ -93,16 +93,13 @@ class GalleryView: UIView {
     //MARK: - Life Cycle
 
     override func layoutSubviews() {
-
-        /* 
+        /*
          Resize collection and update layout.
          Collection is resized manually because of bug reporting logs appearing in case of autolayout.
          */
-        if !CGSizeEqualToSize(collectionView.frame.size, bounds.size) {
-            collectionViewLayout.itemSize = self.bounds.size
-            collectionViewLayout.invalidateLayout()
-            collectionView.frame = bounds
-        }
+        collectionViewLayout.itemSize = self.bounds.size
+        collectionViewLayout.invalidateLayout()
+        collectionView.frame = bounds
         
         super.layoutSubviews()
 
