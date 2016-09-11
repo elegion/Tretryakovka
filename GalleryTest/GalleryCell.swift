@@ -50,4 +50,8 @@ class GalleryCell: UICollectionViewCell {
         get { return zoomingView.toggleZoomOnDoubleTap }
         set { zoomingView.toggleZoomOnDoubleTap = newValue }
     }
+    
+    var toggleZoomGestureRecognizer: UITapGestureRecognizer {
+        return zoomingView.toggleZoomGestureRecognizer
+    }
 }

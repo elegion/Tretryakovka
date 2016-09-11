@@ -16,7 +16,7 @@ final class ZoomingView: UIView {
 
     private var scrollView: UIScrollView!
     private var imageView: UIImageView!
-    private var toggleZoomRecognizer: UITapGestureRecognizer!
+    private(set) var toggleZoomGestureRecognizer: UITapGestureRecognizer!
 
     //MARK - Initialization
     
@@ -43,8 +43,8 @@ final class ZoomingView: UIView {
         imageView.contentMode = .ScaleAspectFit
         scrollView.addSubview(imageView)
         
-        toggleZoomRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleScale))
-        toggleZoomRecognizer.numberOfTapsRequired = 2
+        toggleZoomGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleScale))
+        toggleZoomGestureRecognizer.numberOfTapsRequired = 2
         
         minimumZoomScale = kDefaultMinimumZoomScale
         maximumZoomScale = kDefaultMaximumZoomScale
@@ -79,13 +79,13 @@ final class ZoomingView: UIView {
             guard let gestureRecognizers = gestureRecognizers else {
                 return false
             }
-            return gestureRecognizers.contains(toggleZoomRecognizer)
+            return gestureRecognizers.contains(toggleZoomGestureRecognizer)
         }
         set {
-            if (newValue) {
-                addGestureRecognizer(toggleZoomRecognizer)
+            if newValue {
+                addGestureRecognizer(toggleZoomGestureRecognizer)
             } else {
-                removeGestureRecognizer(toggleZoomRecognizer)
+                removeGestureRecognizer(toggleZoomGestureRecognizer)
             }
         }
     }

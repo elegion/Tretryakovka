@@ -80,6 +80,16 @@ class GalleryView: UIView {
         }
     }
     
+    /// Double tap recognizer of currently visible cell
+    var activeToggleZoomGestureRecognizer: UITapGestureRecognizer? {
+        let optionalVisibleCell = collectionView.visibleCells().first as! GalleryCell?
+        if let visibleCell = optionalVisibleCell {
+            return visibleCell.toggleZoomGestureRecognizer
+        } else {
+            return nil
+        }
+    }
+    
     //MARK: - Life Cycle
 
     override func layoutSubviews() {
