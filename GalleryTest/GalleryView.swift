@@ -8,6 +8,8 @@
 
 import UIKit
 
+public let GalleryViewIndexDidChangeNotification = "com.gallery.GalleryViewIndexDidChangeNotification"
+
 private let kGalleryCellIdentifier = "GalleryCell"
 /// Spacing between images
 private let kImageSpacing = 40 as CGFloat
@@ -16,9 +18,16 @@ class GalleryView: UIView {
 
     private var collectionView: UICollectionView!
     private var collectionViewLayout: UICollectionViewFlowLayout!
+
     private var imageWidth: CGFloat { return bounds.width + kImageSpacing }
-    /// Keeped for rotation
-    private var currentIndex: Int = 0
+
+    private(set) var currentIndex: Int = 0 {
+        didSet {
+            if currentIndex != oldValue {
+                NSNotificationCenter.defaultCenter().postNotificationName(GalleryViewIndexDidChangeNotification, object: self)
+            }
+        }
+    }
     
     //MARK: - Initialization
     
