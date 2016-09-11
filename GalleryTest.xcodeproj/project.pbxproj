@@ -19,6 +19,7 @@
 		378F3A561D7E1528008FB892 /* GalleryUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378F3A551D7E1528008FB892 /* GalleryUIImage.swift */; };
 		378F3A581D7E1616008FB892 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378F3A571D7E1616008FB892 /* GalleryView.swift */; };
 		378F3A5A1D7E1881008FB892 /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378F3A591D7E1881008FB892 /* GalleryCell.swift */; };
+		379CDC3E1D81F80000904789 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379CDC3D1D81F80000904789 /* GalleryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		378F3A551D7E1528008FB892 /* GalleryUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryUIImage.swift; sourceTree = "<group>"; };
 		378F3A571D7E1616008FB892 /* GalleryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		378F3A591D7E1881008FB892 /* GalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		379CDC3D1D81F80000904789 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				378F3A531D7E1214008FB892 /* GalleryImage.swift */,
 				378F3A551D7E1528008FB892 /* GalleryUIImage.swift */,
 				378F3A571D7E1616008FB892 /* GalleryView.swift */,
+				379CDC3D1D81F80000904789 /* GalleryViewController.swift */,
 				371ADA971D746010002FA2EC /* UIImageViewGalleryExtensions.swift */,
 				370095A81D6E089E003DA494 /* ZoomingView.swift */,
 			);
@@ -195,6 +198,7 @@
 				378F3A561D7E1528008FB892 /* GalleryUIImage.swift in Sources */,
 				378F3A5A1D7E1881008FB892 /* GalleryCell.swift in Sources */,
 				378F3A541D7E1214008FB892 /* GalleryImage.swift in Sources */,
+				379CDC3E1D81F80000904789 /* GalleryViewController.swift in Sources */,
 				370095931D6DDE59003DA494 /* AppDelegate.swift in Sources */,
 				370095A91D6E089E003DA494 /* ZoomingView.swift in Sources */,
 			);

@@ -26,8 +26,43 @@ class ViewController: UIViewController {
             GalleryUIImage(image: UIImage(named: "pic")!)
         ]
     }
+
+    @IBAction func onItem3Pressed(sender: AnyObject) {
+
+        let galleryController = GalleryViewController()
+        galleryController.images = [
+            GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryUIImage(image: UIImage(named: "pic")!)
+        ]
+
+        navigationController?.pushViewController(galleryController, animated: true)
+
+//        galleryController.backButtonAction = {
+//            self.navigationController?.popViewControllerAnimated(true)
+//        }
+        
+//        galleryController.backButtonAction = {
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }
+    }
     
     @IBAction func returnToGallery(segue: UIStoryboardSegue) {
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "gallery" {
+            let gallery = segue.destinationViewController as! GalleryViewController
+            gallery.images = [
+                GalleryUIImage(image: UIImage(named: "pic")!),
+                GalleryUIImage(image: UIImage(named: "pic")!),
+                GalleryUIImage(image: UIImage(named: "pic")!),
+                GalleryUIImage(image: UIImage(named: "pic")!),
+                GalleryUIImage(image: UIImage(named: "pic")!)
+            ]
+        }
     }
 }
