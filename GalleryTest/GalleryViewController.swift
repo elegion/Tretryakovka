@@ -57,6 +57,7 @@ class GalleryViewController: UIViewController {
         super.viewDidAppear(animated)
         galleryIndexObservationEnabled = true
         onGalleryIndexChanged(nil)
+        resetNavigationBar()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -150,6 +151,17 @@ class GalleryViewController: UIViewController {
                 dismissViewControllerAnimated(true, completion: nil)
             }
         }
+    }
+    
+    /// Fix disappearing title after viewDidAppear
+    private func resetNavigationBar() {
+        let delegate = navigationBar.delegate
+        navigationBar.delegate = nil // disable pop processing
+
+        navigationBar.popNavigationItemAnimated(false)
+        navigationBar.pushNavigationItem(navigationItem, animated: false)
+
+        navigationBar.delegate = delegate
     }
 }
 
