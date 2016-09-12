@@ -156,8 +156,9 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UINavigationBarDelegate {
     
     func navigationBar(navigationBar: UINavigationBar, shouldPopItem item: UINavigationItem) -> Bool {
+        navigationBar.items = [navigationItem] // weird crash on pop on iOS 8 otherwise
         onBackPressed()
-        return false
+        return false // incorrect nav bar state on deallocation otherwise
     }
 }
 
