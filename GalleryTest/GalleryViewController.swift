@@ -83,6 +83,18 @@ class GalleryViewController: UIViewController {
         self.navigationBarHidden = !navigationBarHidden
     }
     
+    private func onBackPressed() {
+        if let backButtonAction = backButtonAction {
+            backButtonAction()
+        } else {
+            if navigationController != nil {
+                navigationController?.popViewControllerAnimated(true)
+            } else {
+                dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+    }
+    
     //MARK: - Observation
     
     private var galleryIndexObservationEnabled: Bool = false {
@@ -126,7 +138,7 @@ class GalleryViewController: UIViewController {
         let backNavigationItem = UINavigationItem()
         var backItem = self.backItem
         if backItem == nil {
-            backItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(onBackPressed))
+            backItem = UIBarButtonItem(barButtonSystemItem: .Done, target: nil, action: nil)
         }
         backNavigationItem.backBarButtonItem = backItem
         navigationBar.setItems([backNavigationItem, navigationItem], animated: false)
@@ -138,18 +150,6 @@ class GalleryViewController: UIViewController {
             navigationController.setNavigationBarHidden(true, animated: true)
         } else {
             navigationController.setNavigationBarHidden(originalNavigationBarHidden, animated: true)
-        }
-    }
-    
-    func onBackPressed() {
-        if let backButtonAction = backButtonAction {
-            backButtonAction()
-        } else {
-            if navigationController != nil {
-                navigationController?.popViewControllerAnimated(true)
-            } else {
-                dismissViewControllerAnimated(true, completion: nil)
-            }
         }
     }
     
