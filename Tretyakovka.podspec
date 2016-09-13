@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = 'Tretyakovka'
-  s.version                 = '0.0.0'
+  s.version                 = '0.0.1'
   s.summary                 = 'Custom iOS gallery'
   s.description             = 'Custom and customizable iOS gallery written in Swift. Supports UIImages and URL image loading.'
   s.homepage                = 'https://github.com/elegion/ios-Tretryakovka'
