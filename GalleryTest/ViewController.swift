@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         
         galleryView.images = [
             GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryURLImage(URLString: "https://i.ytimg.com/vi/p5rjUVZM20Y/hqdefault.jpg?custom=true&w=336&h=188&stc=true&jpg444=true&jpgq=90&sp=68&sigh=zGGvB8HKLJ4uU_Zq9mBpk8-d0HU"),
             GalleryUIImage(image: UIImage(named: "pic")!),
             GalleryUIImage(image: UIImage(named: "pic")!),
             GalleryUIImage(image: UIImage(named: "pic")!),
@@ -32,6 +33,12 @@ class ViewController: UIViewController {
         let galleryController = GalleryViewController()
         galleryController.images = [
             GalleryUIImage(image: UIImage(named: "pic")!),
+            GalleryURLImage(URLString: "http://placekitten.com/200/300"),
+            GalleryURLImage(URLString: "http://placekitten.com/200/400"),
+            GalleryURLImage(URLString: "http://placekitten.com/100/300"),
+            GalleryURLImage(URLString: "http://placekitten.com/200/200"),
+            GalleryURLImage(URLString: "http://placekitten.com/150/300"),
+            GalleryURLImage(URLString: "http://placekitten.com/200/350"),
             GalleryUIImage(image: UIImage(named: "pic")!),
             GalleryUIImage(image: UIImage(named: "pic")!),
             GalleryUIImage(image: UIImage(named: "pic")!),
