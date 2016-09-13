@@ -15,8 +15,6 @@ let kDefaultMaximumZoomScale = 4 as CGFloat
 final class ZoomingView: UIView {
 
     private var scrollView: UIScrollView!
-    private var imageView: UIImageView!
-    private(set) var toggleZoomGestureRecognizer: UITapGestureRecognizer!
 
     //MARK - Initialization
     
@@ -52,6 +50,9 @@ final class ZoomingView: UIView {
     
     //MARK: - Public
     
+    private(set) var imageView: UIImageView!
+    private(set) var toggleZoomGestureRecognizer: UITapGestureRecognizer!
+
     @IBInspectable var image: UIImage? {
         get { return imageView.image }
         set {

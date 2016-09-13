@@ -22,14 +22,6 @@ class GalleryView: UIView {
     
     private var imageWidth: CGFloat { return bounds.width + kImageSpacing }
 
-    private(set) var currentIndex: Int = 0 {
-        didSet {
-            if currentIndex != oldValue {
-                NSNotificationCenter.defaultCenter().postNotificationName(GalleryViewIndexDidChangeNotification, object: self)
-            }
-        }
-    }
-    
     //MARK: - Initialization
     
     override init(frame: CGRect) {
@@ -62,6 +54,14 @@ class GalleryView: UIView {
     }
 
     //MARK: - Public
+    
+    private(set) var currentIndex: Int = 0 {
+        didSet {
+            if currentIndex != oldValue {
+                NSNotificationCenter.defaultCenter().postNotificationName(GalleryViewIndexDidChangeNotification, object: self)
+            }
+        }
+    }
     
     var images: [GalleryImage] = [GalleryImage]() {
         didSet {
