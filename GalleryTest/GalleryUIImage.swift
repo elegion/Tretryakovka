@@ -8,15 +8,23 @@
 
 import UIKit
 
-class GalleryUIImage: GalleryImage {
+class GalleryUIImage {
     
     let image: UIImage
     
     init(image: UIImage) {
         self.image = image
     }
+}
 
+//MARK: - GalleryImage
+
+extension GalleryUIImage: GalleryImage {
+    
     func setImageToZoomingView(zoomingView: ZoomingView) {
         zoomingView.image = image
+    }
+    
+    func cancelSettingImageToZoomingView(zoomingView: ZoomingView) {
     }
 }
