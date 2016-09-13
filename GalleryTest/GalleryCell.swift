@@ -32,6 +32,7 @@ class GalleryCell: UICollectionViewCell {
     
     var image: GalleryImage? {
         didSet {
+            image?.cancelSettingImageToZoomingView(zoomingView)
             image?.setImageToZoomingView(zoomingView)
         }
     }

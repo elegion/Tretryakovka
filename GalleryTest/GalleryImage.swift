@@ -9,6 +9,6 @@
 import UIKit
 
 protocol GalleryImage {
-
     func setImageToZoomingView(zoomingView: ZoomingView)
+    func cancelSettingImageToZoomingView(zoomingView: ZoomingView)
 }
