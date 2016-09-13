@@ -18,7 +18,8 @@ class GalleryView: UIView {
 
     private var collectionView: UICollectionView!
     private var collectionViewLayout: UICollectionViewFlowLayout!
-
+    private var xOffset: CGFloat = 0
+    
     private var imageWidth: CGFloat { return bounds.width + kImageSpacing }
 
     private(set) var currentIndex: Int = 0 {
@@ -151,6 +152,10 @@ extension GalleryView: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        currentIndex = Int(scrollView.contentOffset.x / imageWidth + 0.5)
+        let xOffset = scrollView.contentOffset.x
+        if self.xOffset != xOffset { // prevent consideration after rotation
+            self.xOffset = xOffset
+            currentIndex = Int(xOffset / imageWidth + 0.5)
+        }
     }
 }
