@@ -1,0 +1,11 @@
+#!/usr/bin/ruby
+
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'Tretyakovka' do
+    
+    pod 'Tretyakovka', :path => '../'
+    
+end

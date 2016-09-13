@@ -1,0 +1,7 @@
+inhibit_all_warnings!
+
+target 'Tretyakovka' do
+	use_frameworks!
+
+	pod 'AlamofireImage', '~> 2.4.0'
+end
