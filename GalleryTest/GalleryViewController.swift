@@ -133,6 +133,7 @@ class GalleryViewController: UIViewController {
     }
     
     private var originalNavigationBarHidden: Bool = false
+    
     func setNavigationBarCustomized(customized: Bool) {
 
         let backNavigationItem = UINavigationItem()
