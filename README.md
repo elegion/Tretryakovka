@@ -31,11 +31,11 @@ The product is available under the MIT license. See the LICENSE file for more in
 
 ## TODOs
 
-1) Assets Library support
-2) Minimize number of calls of layoutSubviews in GalleryView
-3) Fix error logs on rotation from landscape to portrait
-4) Test on iPad
-5) Nav bar layout on rotation
+1) Assets Library support  
+2) Minimize number of calls of layoutSubviews in GalleryView  
+3) Fix error logs on rotation from landscape to portrait  
+4) Test on iPad  
+5) Nav bar layout on rotation  
 
 Test:
 - iPad
