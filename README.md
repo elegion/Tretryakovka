@@ -1,7 +1,8 @@
-# Flamingo
+# Tretyakovka
 
 ## Description
 
+Custom and customizable iOS image gallery customized similarly to Photo app.
 
 ## Installation
 
@@ -34,3 +35,9 @@ The product is available under the MIT license. See the LICENSE file for more in
 2) Minimize number of calls of layoutSubviews in GalleryView
 3) Fix error logs on rotation from landscape to portrait
 4) Test on iPad
+5) Nav bar layout on rotation
+
+Test:
+- iPad
+- test project
+- ObjC
